@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="D:/Projects/Weather Lamp/Java Server Process/Support files/commons-beanutils-1.8.3-bin/commons-beanutils-1.8.3/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="D:/Projects/Weather Lamp/Java Server Process/Support files/commons-beanutils-1.8.3-bin/commons-beanutils-1.8.3/commons-beanutils-bean-collections-1.8.3.jar"/>
+	<classpathentry kind="lib" path="D:/Projects/Weather Lamp/Java Server Process/Support files/commons-beanutils-1.8.3-bin/commons-beanutils-1.8.3/commons-beanutils-core-1.8.3.jar"/>
+	<classpathentry kind="lib" path="D:/Projects/Weather Lamp/Java Server Process/Support files/commons-digester3-3.1-bin/commons-digester3-3.1/commons-digester3-3.1.jar"/>
+	<classpathentry kind="lib" path="D:/Projects/Weather Lamp/Java Server Process/Support files/commons-logging-1.1.1-bin/commons-logging-1.1.1/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="D:/Projects/Weather Lamp/Java Server Process/Support files/commons-logging-1.1.1-bin/commons-logging-1.1.1/commons-logging-adapters-1.1.1.jar"/>
+	<classpathentry kind="lib" path="D:/Projects/Weather Lamp/Java Server Process/Support files/commons-logging-1.1.1-bin/commons-logging-1.1.1/commons-logging-api-1.1.1.jar"/>
+	<classpathentry kind="lib" path="D:/Projects/Weather Lamp/Java Server Process/Support files/commons-dbutils-1.4/commons-dbutils-1.4.jar"/>
+	<classpathentry kind="lib" path="D:/Projects/Weather Lamp/Java Server Process/Support files/sqljdbc_3.0/enu/sqljdbc4.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
