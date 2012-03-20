@@ -49,6 +49,7 @@ public class PachubeUpload {
 		hr.addHeaderItem("content-type", "text/csv");
 		
 		String body = "WEATHERPACKET," + newValues;
+		
 		hr.setBody(body); 
 		System.out.println(hr.getHttpCommand()); 
 		
