@@ -50,6 +50,7 @@ public class PachubeUpload {
 		
 		String body = "WEATHERPACKET," + newValues;
 		
+		
 		hr.setBody(body); 
 		System.out.println(hr.getHttpCommand()); 
 		
