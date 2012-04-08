@@ -2,6 +2,8 @@ package WeatherToPachube;
 
 import java.io.IOException;
 import org.xml.sax.SAXException;
+
+import java.sql.SQLException;
 import java.util.Date;
 
 
@@ -11,13 +13,18 @@ public class MainProcess {
 	 * @param args
 	 * @throws IOException 
 	 * @throws SAXException 
+	 * @throws SQLException 
 	 */
-	public static void main(String[] args) throws SAXException, IOException {
+	public static void main(String[] args) throws SAXException, IOException, SQLException {
 
 		String packet = "";
 		
 		System.out.println("Beginning java process to upload weather to pachube"); 
 		
+		
+		if (1==2) {
+			
+
 		if (args.length == 3)
 		{
 			
@@ -31,9 +38,9 @@ public class MainProcess {
 		}
 		else
 		{
-			GetBBCWeather weatherHelper = new GetBBCWeather();
+			BeebWeatherHelper weatherHelper = new BeebWeatherHelper();
 			
-			WeatherClass weather = weatherHelper.getForecast();
+			WeatherClass weather = weatherHelper.getForecast(8);
 			System.out.println(weather.getDateOfForecast().toString());
 			
 			Date today = new Date();		
@@ -62,19 +69,7 @@ public class MainProcess {
 			packet = weather.getRGBPacket();
 			System.out.println("Successfully got the beeb values."); 
 			
-			PersistFeedToDatabase dbHelper = new PersistFeedToDatabase();
-			
-			if (dbHelper.PersistReading(weather) == true)
-			{
-				System.out.println("SQL work-ed");
-			}
-			else
-			{
-				System.out.println("SQL update not work-ed");
-			}
 		}
-		
-
 		
 		PachubeUpload upload = new PachubeUpload();
 		if (upload.uploadToPachube(packet) == true)
@@ -85,6 +80,49 @@ public class MainProcess {
 		//upload.getFeed();
 		
 		System.out.println("Finished"); 
+		}
+		
+		PersistAllWeatherToDB();
 	}
+	
+	private static void PersistAllWeatherToDB() throws SAXException, IOException, SQLException
+	{
+		BeebWeatherHelper weatherHelper = new BeebWeatherHelper();
+		PersistToDatabase dbHelper = new PersistToDatabase();
+		
+		boolean continueProcess = true;
+		Integer regionId = 1;
+		
+		while (continueProcess)
+		{
+			//Get Next format from Beeb
+			WeatherClass weather = weatherHelper.getForecast(regionId);
+			
+			if (weather == null) {
+				System.out.println("Nothing from the Beeb, region:" + regionId.toString());
+				continueProcess = false;
+			}
+			else {
+				
+				//Validate\Update Region
+				dbHelper.CheckUpdateRegion(regionId, weather);
+				
+				//Persist to DB
+				if (dbHelper.PersistRegionForecast(regionId, weather) == 3) {
+					System.out.println("Added forecast for region:" + regionId.toString());
+				}
+				else {
+					System.out.println("SQL update not work-ed, region:" + regionId.toString());
+					continueProcess = false;
+				}
+				
+				regionId++;
+			}
+			
+
+		}
+	}
+	
+	
 
 }

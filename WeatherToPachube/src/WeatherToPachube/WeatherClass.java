@@ -1,6 +1,5 @@
 package WeatherToPachube;
 
-
 import java.util.ArrayList; 
 import java.util.Collections; 
 import java.util.Date;
@@ -9,12 +8,11 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-
 public class WeatherClass {
 
 	//<pubDate>Sat, 05 Nov 2011 09:40:00 +0000</pubDate>
 	private Date dateOfForecast; 
-	
+	private String regionTitle;
 	private List<DayForecast> days = new ArrayList<DayForecast>(); 
 	
 	public Date getDateOfForecast() { 
@@ -34,8 +32,15 @@ public class WeatherClass {
 		{
 			e.printStackTrace();
 		}
-
 	} 
+
+	public void setRegionTitle(String title) {
+		regionTitle = title;
+	}
+	
+	public String getRegionTitle() {
+		return regionTitle;
+	}
 
 	public List<DayForecast> getDays() { 
 	return Collections.unmodifiableList(days); 

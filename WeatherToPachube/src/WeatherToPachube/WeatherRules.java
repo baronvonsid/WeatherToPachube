@@ -12,14 +12,20 @@ protected void configure() {
 	// with the attribute values of the <family> element 
 	// For the setProperties() to work this way, a property name must be the same as the attribute name. 
 	
+	
 	//Hopefully should populate the WeatherClass object, with the element pubDate.
 	forPattern("rss/channel").createObject().ofType("WeatherToPachube.WeatherClass"); 
-	forPattern("rss/channel/pubDate").setBeanProperty(); 
-	
+	forPattern("rss/channel/pubDate").setBeanProperty();
+
+	forPattern("rss/channel/image/title").setBeanProperty().withName("regionTitle");
+
 	//For each item element, should create a DayForecast object, then add it to the WeatherClass list with addDay.
 	forPattern("rss/channel/item").createObject().ofType("WeatherToPachube.DayForecast").then().setNext("addDay");
 	
-	forPattern("rss/channel/item/title").setBeanProperty(); 
-	forPattern("rss/channel/item/description").setBeanProperty(); 
+	forPattern("rss/channel/item/title").setBeanProperty();
+	forPattern("rss/channel/item/description").setBeanProperty();
+	forPattern("rss/channel/item/geo:lat").setBeanProperty().withName("latitude");
+	forPattern("rss/channel/item/geo:long").setBeanProperty().withName("longitude");
+	
 	}
 }
